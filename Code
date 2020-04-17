@@ -1,0 +1,22 @@
+int led = D7;
+int photoTransistor = A0;
+int value = 0;
+
+void setup() 
+{
+    pinMode(led, OUTPUT);
+    pinMode(photoTransistor, INPUT);
+}
+
+void loop() 
+{
+    value = analogRead(photoTransistor);
+    digitalWrite(led, HIGH);
+    
+    String lightsen = String(value);
+    Particle.publish("lightsen", lightsen, PRIVATE);
+    delay(20000);
+    
+    digitalWrite(led, LOW);
+    delay(5000);
+}
